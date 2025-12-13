@@ -11,12 +11,17 @@ class Player
   end
 
   ##
-  # Set the player's mark at a given position on the board
+  # Ask the player to input their mark's location
+  # Return the desired location as an absolute integer or 0 otherwise
   def determine_mark_location
     puts "Player #{mark_type}, where would you like to place your mark?"
-    gets.chomp
+    gets.chomp.to_i.abs
   end
 end
 
 def test_determine_mark_location
+  player_x = Player.new('X')
+  player_x.determine_mark_location
 end
+
+p test_determine_mark_location
