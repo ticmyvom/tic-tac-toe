@@ -5,9 +5,10 @@ Set up game class to coordinate the game
 ## Who knows what
 The board knows its layout, how to determine the winner
 The player know what mark it is, and IO system to receive location on where to mark
+### Next time
 The main controller knows whose turn it is and coordinate between the player and the board; here lies the game loop;
 it also can determine if a location already has a mark by checking with the board, then prompt the player for another
-location to mark.
+location to mark. It also can ask the 1st player to either be X or O. The board should also note the numpad position at the beginning of each game.
 
 # Plan
 Setup: 2 players, a board, Os, Xs, victory condition
