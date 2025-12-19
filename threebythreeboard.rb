@@ -32,6 +32,21 @@ class ThreeByThreeBoard
     check_board_by_row(mark_type) || check_board_vertically_and_diagonally(mark_type)
   end
 
+  def display
+    puts '-------------'
+    puts "| #{find_character_from_input(7)} | #{find_character_from_input(8)} | #{find_character_from_input(9)} |"
+    puts '----+---+----'
+    puts "| #{find_character_from_input(4)} | #{find_character_from_input(5)} | #{find_character_from_input(6)} |"
+    puts '----+---+----'
+    puts "| #{find_character_from_input(1)} | #{find_character_from_input(2)} | #{find_character_from_input(3)} |"
+    puts '-------------'
+    # puts ' X | X : X '
+    # puts '---+---+----'
+    # puts ' X | X : X '
+    # puts '---+---+----'
+    # puts ' X | X : X '
+  end
+
   private
 
   def find_position_from_input(input)
@@ -114,6 +129,16 @@ def test_help_to_determine_winner_vertically_nil
   board1.update_board(2, 'X')
   # p board1.board
   p board1.help_to_determine_winner('X')
+
+def test_display
+  board1 = ThreeByThreeBoard.new
+  board1.update_board(9, 'X')
+  board1.update_board(7, 'O')
+  board1.update_board(4, 'X')
+  board1.update_board(6, 'O')
+  board1.update_board(3, 'X')
+  board1.update_board(2, 'O')
+  board1.display
 end
 
 # test_update_board
@@ -121,3 +146,4 @@ test_help_to_determine_winner_by_row
 test_help_to_determine_winner_diagonally
 test_help_to_determine_winner_vertically
 test_help_to_determine_winner_vertically_nil # should be nil
+test_display
