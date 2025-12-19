@@ -26,7 +26,7 @@ class ThreeByThreeBoard
 
   # have a helper function that determine if X or O has won
   # if no one wins and no more move, it's a draw
-  def help_to_determine_winner(mark_type)
+  def determine_winner(mark_type)
     # return the mark_type if it wins or nil
     # (I suppose it should be fine to return a boolean as well, depending on if mark_type wins)
     check_board_by_row(mark_type) || check_board_vertically_and_diagonally(mark_type)
@@ -95,40 +95,41 @@ def test_update_board
   p board1.board
 end
 
-def test_help_to_determine_winner_by_row
+def test_determine_winner_by_row
   board1 = ThreeByThreeBoard.new
   board1.update_board(1, 'O')
   board1.update_board(2, 'O')
   board1.update_board(3, 'O')
   # p board1.board
-  p board1.help_to_determine_winner('O')
+  p board1.determine_winner('O')
 end
 
-def test_help_to_determine_winner_diagonally
+def test_determine_winner_diagonally
   board1 = ThreeByThreeBoard.new
   board1.update_board(1, 'X')
   board1.update_board(5, 'X')
   board1.update_board(9, 'X')
   # p board1.board
-  p board1.help_to_determine_winner('X')
+  p board1.determine_winner('X')
 end
 
-def test_help_to_determine_winner_vertically
+def test_determine_winner_vertically
   board1 = ThreeByThreeBoard.new
   board1.update_board(6, 'X')
   board1.update_board(3, 'X')
   board1.update_board(9, 'X')
   # p board1.board
-  p board1.help_to_determine_winner('X')
+  p board1.determine_winner('X')
 end
 
-def test_help_to_determine_winner_vertically_nil
+def test_determine_winner_vertically_nil
   board1 = ThreeByThreeBoard.new
   board1.update_board(8, 'X')
   board1.update_board(4, 'X')
   board1.update_board(2, 'X')
   # p board1.board
-  p board1.help_to_determine_winner('X')
+  p board1.determine_winner('X')
+end
 
 def test_display
   board1 = ThreeByThreeBoard.new
@@ -142,8 +143,8 @@ def test_display
 end
 
 # test_update_board
-test_help_to_determine_winner_by_row
-test_help_to_determine_winner_diagonally
-test_help_to_determine_winner_vertically
-test_help_to_determine_winner_vertically_nil # should be nil
+test_determine_winner_by_row
+test_determine_winner_diagonally
+test_determine_winner_vertically
+test_determine_winner_vertically_nil # should be nil
 test_display
