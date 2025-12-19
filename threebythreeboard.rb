@@ -19,6 +19,7 @@ class ThreeByThreeBoard
 
     if board[row_index][column_index] == '-'
       board[row_index][column_index] = mark_type # TODO: check if the mark_type is valid? And the location is within range
+      'Done'
     else
       'Please try a different location' # TODO: add more logic here?, currently, nothing would show up
     end
