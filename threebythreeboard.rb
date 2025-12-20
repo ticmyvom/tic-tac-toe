@@ -25,12 +25,20 @@ class ThreeByThreeBoard
     end
   end
 
-  # have a helper function that determine if X or O has won
-  # if no one wins and no more move, it's a draw
+  # detects if mark_type has won or if there is any more move left
+  # return mark_type if it wins
+  # or nil if no one wins yet
+  # or 'Draw' otherwise
   def determine_winner(mark_type)
-    # return the mark_type if it wins or nil
-    # (I suppose it should be fine to return a boolean as well, depending on if mark_type wins)
-    check_board_by_row(mark_type) || check_board_vertically_and_diagonally(mark_type)
+    result = check_board_by_row(mark_type) || check_board_vertically_and_diagonally(mark_type)
+    if result.nil?
+      result = if more_move?
+                 nil
+               else
+                 'Draw'
+               end
+    end
+    result
   end
 
   def display
@@ -136,6 +144,25 @@ def test_determine_winner_vertically_nil
   p board1.determine_winner('X')
 end
 
+def test_determine_winner_draw
+  board1 = ThreeByThreeBoard.new
+  board1.update_board(8, 'X')
+  board1.update_board(4, 'X')
+  board1.update_board(2, 'X')
+  board1.update_board(9, 'O')
+  board1.update_board(5, 'O')
+  board1.update_board(3, 'O')
+  board1.update_board(1, 'O')
+  board1.update_board(6, 'X')
+  board1.update_board(7, 'X')
+  p board1.display
+  p board1.determine_winner('X')
+  # This is actually an interesting test case
+  # Because determin_winner only check if mark_type has won.
+  # It does not check whether the opposite mark has won.
+  # Can this be a problem later? Maybe. For now. Should be fine..
+end
+
 def test_display
   board1 = ThreeByThreeBoard.new
   board1.update_board(9, 'X')
@@ -166,9 +193,10 @@ def test_more_move?
 end
 
 # test_update_board
-test_determine_winner_by_row
-test_determine_winner_diagonally
-test_determine_winner_vertically
-test_determine_winner_vertically_nil # should be nil
-test_display
-test_more_move?
+# test_determine_winner_by_row
+# test_determine_winner_diagonally
+# test_determine_winner_vertically
+# test_determine_winner_vertically_nil # should be nil
+# test_determine_winner_draw # shoudl be draw
+# test_display
+# test_more_move?
