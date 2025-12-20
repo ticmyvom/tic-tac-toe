@@ -48,6 +48,10 @@ class ThreeByThreeBoard
     # puts ' X | X : X '
   end
 
+  def more_move?
+    [*1..9].any? { |location| find_character_from_input(location) == '-' }
+  end
+
   private
 
   def find_position_from_input(input)
@@ -143,9 +147,28 @@ def test_display
   board1.display
 end
 
+def test_more_move?
+  p 'Testing more_move?'
+  board1 = ThreeByThreeBoard.new
+  p board1.more_move?
+  board1.update_board(9, 'X')
+  board1.update_board(7, 'O')
+  board1.update_board(4, 'X')
+  board1.update_board(6, 'O')
+  p board1.more_move?
+  board1.update_board(3, 'X')
+  board1.update_board(2, 'O')
+  board1.update_board(1, 'O')
+  board1.update_board(5, 'O')
+  board1.update_board(8, 'O')
+  p board1.more_move?
+  board1.display
+end
+
 # test_update_board
 test_determine_winner_by_row
 test_determine_winner_diagonally
 test_determine_winner_vertically
 test_determine_winner_vertically_nil # should be nil
 test_display
+test_more_move?
