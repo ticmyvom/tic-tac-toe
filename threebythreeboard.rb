@@ -56,11 +56,11 @@ class ThreeByThreeBoard
     # puts ' X | X : X '
   end
 
+  private
+
   def more_move?
     [*1..9].any? { |location| find_character_from_input(location) == '-' }
   end
-
-  private
 
   def find_position_from_input(input)
     # From observation, we have: input = -3 * row_index + column_index + 7
