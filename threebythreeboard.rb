@@ -3,7 +3,7 @@
 ##
 # This class represents a board of the tic tac toe game
 class ThreeByThreeBoard
-  attr_accessor :board
+  attr_reader :board
 
   def initialize
     @board = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]
@@ -94,109 +94,3 @@ class ThreeByThreeBoard
     nil
   end
 end
-
-def test_update_board
-  board1 = ThreeByThreeBoard.new
-  p board1.board
-  board1.update_board(7, 'X')
-  board1.update_board(7, 'X')
-  board1.update_board(8, 'O')
-  board1.update_board(6, 'X')
-  board1.update_board(1, 'O')
-  board1.update_board(2, 'X')
-  board1.update_board(3, 'X')
-  p board1.board
-end
-
-def test_determine_winner_by_row
-  board1 = ThreeByThreeBoard.new
-  board1.update_board(1, 'O')
-  board1.update_board(2, 'O')
-  board1.update_board(3, 'O')
-  # p board1.board
-  p board1.determine_winner('O')
-end
-
-def test_determine_winner_diagonally
-  board1 = ThreeByThreeBoard.new
-  board1.update_board(1, 'X')
-  board1.update_board(5, 'X')
-  board1.update_board(9, 'X')
-  # p board1.board
-  p board1.determine_winner('X')
-end
-
-def test_determine_winner_vertically
-  board1 = ThreeByThreeBoard.new
-  board1.update_board(6, 'X')
-  board1.update_board(3, 'X')
-  board1.update_board(9, 'X')
-  # p board1.board
-  p board1.determine_winner('X')
-end
-
-def test_determine_winner_vertically_nil
-  board1 = ThreeByThreeBoard.new
-  board1.update_board(8, 'X')
-  board1.update_board(4, 'X')
-  board1.update_board(2, 'X')
-  # p board1.board
-  p board1.determine_winner('X')
-end
-
-def test_determine_winner_draw
-  board1 = ThreeByThreeBoard.new
-  board1.update_board(8, 'X')
-  board1.update_board(4, 'X')
-  board1.update_board(2, 'X')
-  board1.update_board(9, 'O')
-  board1.update_board(5, 'O')
-  board1.update_board(3, 'O')
-  board1.update_board(1, 'O')
-  board1.update_board(6, 'X')
-  board1.update_board(7, 'X')
-  p board1.display
-  p board1.determine_winner('X')
-  # This is actually an interesting test case
-  # Because determin_winner only check if mark_type has won.
-  # It does not check whether the opposite mark has won.
-  # Can this be a problem later? Maybe. For now. Should be fine..
-end
-
-def test_display
-  board1 = ThreeByThreeBoard.new
-  board1.update_board(9, 'X')
-  board1.update_board(7, 'O')
-  board1.update_board(4, 'X')
-  board1.update_board(6, 'O')
-  board1.update_board(3, 'X')
-  board1.update_board(2, 'O')
-  board1.display
-end
-
-def test_more_move?
-  p 'Testing more_move?'
-  board1 = ThreeByThreeBoard.new
-  p board1.more_move?
-  board1.update_board(9, 'X')
-  board1.update_board(7, 'O')
-  board1.update_board(4, 'X')
-  board1.update_board(6, 'O')
-  p board1.more_move?
-  board1.update_board(3, 'X')
-  board1.update_board(2, 'O')
-  board1.update_board(1, 'O')
-  board1.update_board(5, 'O')
-  board1.update_board(8, 'O')
-  p board1.more_move?
-  board1.display
-end
-
-# test_update_board
-# test_determine_winner_by_row
-# test_determine_winner_diagonally
-# test_determine_winner_vertically
-# test_determine_winner_vertically_nil # should be nil
-# test_determine_winner_draw # shoudl be draw
-# test_display
-# test_more_move?
